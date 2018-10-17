@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Morphing Power Cubes</title>
+  <style type="text/css" media="screen">
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Lucida Grande', Verdana, Arial;
+      font-size: 12px;
+      background-image: -webkit-gradient(radial,
+                            50% 500, 1,
+                            50% 500, 400,
+                            from(rgba(255, 255, 255, 0.3)),
+                            to(rgba(255, 255, 255, 0)));
+     background-repeat: no-repeat;
+    }
+
+    #container {
+      width: 100%;
+      height: 700px;
+      -webkit-perspective: 800; /* For compatibility with iPhone 3.0, we leave off the units here */
+      -webkit-perspective-origin: 50% 225px;
+    }
+    #stage {
+      width: 100%;
+      height: 100%;
+      -webkit-transition: -webkit-transform 2s;
+      -webkit-transform-style: preserve-3d;
+    }
+    
+    #shape {
+      position: relative;
+      margin: 0 auto;
+      height: 600px;
+      width: 600px;
+      -webkit-transform-style: preserve-3d;
+    }
+    
+    .plane {
+      position: absolute;
+      height: 600px;
+      width: 600px;
+      border: 2px solid white;
+      -webkit-border-radius: 36px;
+      -webkit-box-sizing: border-box;
+      text-align: center;
+      font-family: Times, serif;
+      font-size: 124pt;
+      color: black;
+      background-color: rgba(255, 255, 255, 1);
+      -webkit-transition: -webkit-transform 2s, opacity 2s;
+      -webkit-backface-visibility: hidden;
+    }
+
+    #shape.backfaces .plane {
+      -webkit-backface-visibility: visible;
+    }
+    
+    #shape {
+      -webkit-animation: spin 16s infinite linear;
+    }
+
+    @-webkit-keyframes spin {
+      from { -webkit-transform: rotateY(0); }
+      to   { -webkit-transform: rotateY(-360deg); }
+    }
+
+    /* ---------- cube styles ------------- */
+    .cube{
+      position: relative;
+      top: 0px;
+      right: 187px;
+      -webkit-transition: top 2s, right 2s;
+    }
+    .ring{
+      position: relative;
+      top: 160px;
+      -webkit-transition: top 2s, right 2s;
+    }
+    .cube *{
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+      opacity: .7;
+    }
+    .cube > .one {
+      -webkit-transform: scale3d(.587,.587,.587) rotateX(90deg) translateZ(300px);
+      background-image: url(1.jpg);
+    }
+
+    .cube > .two {
+      -webkit-transform: scale3d(.587,.587,.587) translateZ(300px);
+      background-image: url(2.jpg);
+    }
+
+    .cube > .three {
+      -webkit-transform: scale3d(.587,.587,.587) rotateY(90deg) translateZ(300px);
+      background-image: url(3.jpg);
+    }
+
+    .cube > .four {
+      -webkit-transform: scale3d(.587,.587,.587) rotateY(180deg) translateZ(300px);
+      background-image: url(4.jpg);
+    }
+
+    .cube > .five {
+      -webkit-transform: scale3d(.587,.587,.587) rotateY(-90deg) translateZ(300px);
+      background-image: url(5.jpg);
+    }
+
+    .cube > .six {
+      -webkit-transform: scale3d(.587,.587,.587) rotateX(-90deg) translateZ(300px) rotate(180deg);
+      background-image: url(6.jpg);
+    }
+
+
+    .cube > .seven {
+      -webkit-transform: scale3d(.15, .15, .15) rotateX(90deg) translateZ(300px) rotate(180deg);
+      background-image: url(7.jpg);
+    }
+
+    .cube > .eight {
+      -webkit-transform: scale3d(.15, .15, .15) translateZ(300px);
+      background-image: url(8.jpg);
+    }
+
+    .cube > .nine {
+      -webkit-transform: scale3d(.15, .15, .15) rotateY(90deg) translateZ(300px);
+      background-image: url(9.jpg);
+    }
+
+    .cube > .ten {
+      -webkit-transform: scale3d(.15, .15, .15) rotateY(180deg) translateZ(300px);
+      background-image: url(10.jpg);
+    }
+
+    .cube > .eleven {
+      -webkit-transform: scale3d(.15, .15, .15) rotateY(-90deg) translateZ(300px);
+      background-image: url(11.jpg);
+    }
+
+    .cube > .twelve {
+      -webkit-transform: scale3d(.15, .15, .15) rotateX(-90deg) translateZ(300px);
+      background-image: url(12.jpg);
+    }
+
+    /* ---------- ring styles ------------- */
+    .ring *{
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+    .ring > .one {
+      -webkit-transform: translateZ(1140px);
+      background-image: url(1.jpg);
+      
+    }
+
+    .ring > .two {
+      -webkit-transform: rotateY(30deg) translateZ(1140px);
+      background-image: url(2.jpg);
+    }
+
+    .ring > .three {
+      -webkit-transform: rotateY(60deg) translateZ(1140px);
+      background-image: url(3.jpg);
+    }
+
+    .ring > .four {
+      -webkit-transform: rotateY(90deg) translateZ(1140px);
+      background-image: url(4.jpg);
+    }
+
+    .ring > .five {
+      -webkit-transform: rotateY(120deg) translateZ(1140px);
+      background-image: url(5.jpg);
+    }
+
+    .ring > .six {
+      -webkit-transform: rotateY(150deg) translateZ(1140px);
+      background-image: url(6.jpg);
+    }
+
+    .ring > .seven {
+      -webkit-transform: rotateY(180deg) translateZ(1140px);
+      background-image: url(7.jpg);
+    }
+
+    .ring > .eight {
+      -webkit-transform: rotateY(210deg) translateZ(1140px);
+      background-image: url(8.jpg);
+    }
+
+    .ring > .nine {
+      -webkit-transform: rotateY(-120deg) translateZ(1140px);
+      background-image: url(9.jpg);
+    }
+
+    .ring > .ten {
+      -webkit-transform: rotateY(-90deg) translateZ(1140px);
+      background-image: url(10.jpg);
+    }
+
+    .ring > .eleven {
+      -webkit-transform: rotateY(300deg) translateZ(1140px);
+      background-image: url(11.jpg);
+    }
+
+    .ring > .twelve {
+      -webkit-transform: rotateY(330deg) translateZ(1140px);
+      background-image: url(12.jpg);
+    }
+
+    .controls {
+      width: 80%;
+      margin: 0 auto;
+      padding: 5px 20px;
+      -webkit-border-radius: 12px;
+      background-color: rgba(255, 255, 255, 0.5);/*1- transparency*/
+    }
+    .controls > div {
+      margin: 10px;
+    }
+  </style>
+  <script type="text/javascript" charset="utf-8">
+    function hasClassName(inElement, inClassName)
+    {
+        var regExp = new RegExp('(?:^|\\s+)' + inClassName + '(?:\\s+|$)');
+        return regExp.test(inElement.className);
+    }
+
+    function addClassName(inElement, inClassName)
+    {
+        if (!hasClassName(inElement, inClassName))
+            inElement.className = [inElement.className, inClassName].join(' ');
+    }
+
+    function removeClassName(inElement, inClassName)
+    {
+        if (hasClassName(inElement, inClassName)) {
+            var regExp = new RegExp('(?:^|\\s+)' + inClassName + '(?:\\s+|$)', 'g');
+            var curClasses = inElement.className;
+            inElement.className = curClasses.replace(regExp, ' ');
+        }
+    }
+
+    function toggleClassName(inElement, inClassName)
+    {
+        if (hasClassName(inElement, inClassName))
+            removeClassName(inElement, inClassName);
+        else
+            addClassName(inElement, inClassName);
+    }
+
+    function toggleShape()
+    {
+      var shape = document.getElementById('shape');
+      if (hasClassName(shape, 'ring')) {
+        removeClassName(shape, 'ring');
+        addClassName(shape, 'cube');
+      } else {
+        removeClassName(shape, 'cube');
+        addClassName(shape, 'ring');
+      }
+      addClassName(shape, 'backfaces');
+      setTimeout(function(){removeClassName(shape, 'backfaces');},1500);
+
+      
+      // Move the ring back in Z so it's not so in-your-face.
+      var stage = document.getElementById('stage');
+      if (hasClassName(shape, 'ring'))
+        stage.style.webkitTransform = 'translateZ(-1500px)';
+      else
+        stage.style.webkitTransform = '';
+    }
+    setTimeout(function(){toggleShape()},1500);
+    setTimeout(function(){removeClassName(shape, 'backfaces');},100);
+    function toggleBackfaces()
+    {
+      var backfacesVisible = document.getElementById('backfaces').checked;
+      var shape = document.getElementById('shape');
+      if (backfacesVisible)
+        addClassName(shape, 'backfaces');
+      else
+        removeClassName(shape, 'backfaces');
+    }
+  </script>
+</head>
+<body>
+  <!-- <div class="controls">
+    <h1>Animations, Transitions and 3D Transforms</h1>
+    <p>This demo shows some more interesting content using 3D transforms, animations and transitions.
+      Note that you can still select the text on the the elements, even while they are rotating. Transforms elements remain
+        fully interactive.</p>
+    <p>Click Toggle Shape to switch between nested cubes and one big ring. Note how the planes move smoothly to their new locations,
+      even while the whole shape is rotating. You can even interrupt this transition by clicking again, and they move back smoothly.</p>
+    <p>Toggle the Backfaces Visible checkbox to turn backfaces on and off using <code>-webkit-backface-visibility</code>.</p>
+    <div><button onclick="toggleShape()">Toggle Shape</button></div>
+    <div><input type="checkbox" id="backfaces" onclick="toggleBackfaces()" checked><label for="backfaces">Backfaces visible</label></div>
+  </div> -->
+
+  <div id="container">
+    <div id="stage">
+      <div onclick="toggleShape()" id="shape" class="cube backfaces">
+        <div class="plane one"></div>
+        <div class="plane two"></div>
+        <div class="plane three"></div>
+        <div class="plane four"></div>
+        <div class="plane five"></div>
+        <div class="plane six"></div>
+        <div class="plane seven"></div>
+        <div class="plane eight"></div>
+        <div class="plane nine"></div>
+        <div class="plane ten"></div>
+        <div class="plane eleven"></div>
+        <div class="plane twelve"></div>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
